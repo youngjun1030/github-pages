@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노벨버스 - 벨이 없는 버스</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="logo">
+                    <i class="fas fa-bus"></i>
+                    노벨버스
+                </h1>
+                <p class="subtitle">벨이 없는 스마트 버스 시스템</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Mode Selection -->
+                <div class="mode-selection">
+                    <button id="passengerModeBtn" class="mode-btn active">
+                        <i class="fas fa-user"></i>
+                        승객 모드
+                    </button>
+                    <button id="driverModeBtn" class="mode-btn">
+                        <i class="fas fa-steering-wheel"></i>
+                        기사 모드
+                    </button>
+                </div>
+
+                <!-- Passenger Interface -->
+                <div id="passengerInterface" class="interface">
+                    <div class="card">
+                        <h2 class="card-title">
+                            <i class="fas fa-route"></i>
+                            버스 노선 선택
+                        </h2>
+                        <select id="routeSelect" class="select">
+                            <option value="">노선을 선택하세요</option>
+                        </select>
+                    </div>
+
+                    <div id="stopSelection" class="card hidden">
+                        <h2 class="card-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            하차 정류장 선택
+                        </h2>
+                        <div id="stopsList" class="stops-list"></div>
+                    </div>
+
+                    <div id="nfcSection" class="card hidden">
+                        <h2 class="card-title">
+                            <i class="fas fa-wifi"></i>
+                            NFC 태깅
+                        </h2>
+                        <div class="nfc-area">
+                            <div id="nfcStatus" class="nfc-status">
+                                <i class="fas fa-mobile-alt"></i>
+                                <p>버스 탑승 후 NFC 리더기에 태깅하세요</p>
+                            </div>
+                            <button id="nfcTagBtn" class="nfc-btn">
+                                <i class="fas fa-wave-square"></i>
+                                NFC 태깅 시뮬레이션
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="bluetoothSection" class="card hidden">
+                        <h2 class="card-title">
+                            <i class="fab fa-bluetooth"></i>
+                            승차 중
+                        </h2>
+                        <div class="bluetooth-area">
+                            <div class="status-indicator connected">
+                                <i class="fas fa-check-circle"></i>
+                                <p>버스에 연결됨</p>
+                            </div>
+                            <div class="destination-info">
+                                <p><strong>하차 정류장:</strong> <span id="selectedStopName"></span></p>
+                                <p class="help-text">정류장 근처에서 자동으로 블루투스 연결이 해제됩니다.</p>
+                            </div>
+                            <button id="bluetoothDisconnectBtn" class="bluetooth-btn">
+                                <i class="fab fa-bluetooth"></i>
+                                하차 시뮬레이션 (블루투스 해제)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Driver Interface -->
+                <div id="driverInterface" class="interface hidden">
+                    <div class="card">
+                        <h2 class="card-title">
+                            <i class="fas fa-tachometer-alt"></i>
+                            기사 대시보드
+                        </h2>
+                        <select id="driverRouteSelect" class="select">
+                            <option value="">운행 노선 선택</option>
+                        </select>
+                    </div>
+
+                    <div id="driverDashboard" class="card hidden">
+                        <h3 id="currentRoute" class="dashboard-title"></h3>
+                        <div class="bus-position">
+                            <label for="busPosition">현재 버스 위치:</label>
+                            <select id="busPosition" class="select small">
+                                <option value="">위치 선택</option>
+                            </select>
+                        </div>
+                        
+                        <div class="stops-dashboard">
+                            <h4>정류장별 하차 승객 현황</h4>
+                            <div id="stopsInfo" class="stops-info"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Messages -->
+                <div id="statusMessage" class="status-message hidden">
+                    <div class="status-content">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="statusText"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="passenger.js"></script>
+    <script src="driver.js"></script>
+</body>
+</html>
